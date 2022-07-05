@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["StateValue",""],["StateValueChunkWithProof","TODO(joshlind): add a proof implementation (e.g., verify()) and unit tests for these once we start supporting them."],["StateValueHasher","Cryptographic hasher for an BCS-serializable #item"]]});

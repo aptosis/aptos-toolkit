@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["type_of","Returns the structs Module Address, Module Name and the Structs Name"]]});

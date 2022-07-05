@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get_info","Get verification information for this function."]],"struct":[["GlobalInvariantAnalysisProcessor",""],["PerBytecodeRelevance","A named struct for holding the information on how an invariant is relevant to a bytecode."],["PerFunctionRelevance","A named struct for holding the information on how invariants are relevant to a function."]]});

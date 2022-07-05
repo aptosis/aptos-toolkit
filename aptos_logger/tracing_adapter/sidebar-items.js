@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["TracingToAptosDataLayer","A layer that translates tracing events into aptos-logger events."]]});

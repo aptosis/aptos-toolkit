@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["aptos_api_types"] = [{"text":"impl <a class=\"trait\" href=\"warp/reject/trait.Reject.html\" title=\"trait warp::reject::Reject\">Reject</a> for <a class=\"struct\" href=\"aptos_api_types/struct.Error.html\" title=\"struct aptos_api_types::Error\">Error</a>","synthetic":false,"types":["aptos_api_types::error::Error"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

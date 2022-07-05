@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["DEFAULT_FUNDED_COINS",""],["DEPLOYER_MODULE_ADDRESS","Module address of the deployer."]],"struct":[["AptosCreateResourceAccountResult","An individual profile"],["AptosCreateResourceAccountTool","Command to create a new account on-chain"],["ProfileInfo","An individual profile"]]});

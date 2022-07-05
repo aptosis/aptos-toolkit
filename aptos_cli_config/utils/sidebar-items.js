@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["from_yaml",""],["open_file","Opens a file in read-only mode."],["read_from_file","Read a file into a Vec."],["to_yaml",""],["write_to_file","Write a `&[u8]` to a file"],["write_to_file_with_opts","Write a `&[u8]` to a file with the given options"],["write_to_user_only_file","Write a User only read / write file"]]});

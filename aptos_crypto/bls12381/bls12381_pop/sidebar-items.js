@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["ProofOfPossession","A proof-of-possesion (PoP) of a BLS12381 private key. This is just a BLS signature on the corresponding public key."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["make_table",""],["make_table_from_iter",""]],"struct":[["NativeContext",""]],"type":[["NativeFunction",""],["NativeFunctionTable",""]]});

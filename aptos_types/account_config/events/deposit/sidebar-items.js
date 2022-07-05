@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["DepositEvent","Struct that represents a DepositPaymentEvent."]]});

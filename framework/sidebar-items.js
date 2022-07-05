@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["core_modules_full_path",""],["load_modules_from_paths","Load the serialized modules from the specified paths."],["path_in_crate",""]],"mod":[["aptos",""],["natives",""],["release",""]]});

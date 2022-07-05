@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["DOT",""]],"enum":[["Marker","Marker to use when plotting data points"]],"mod":[["bar",""],["block",""],["braille",""],["line",""]]});

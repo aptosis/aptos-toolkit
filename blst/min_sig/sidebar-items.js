@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["AggregatePublicKey",""],["AggregateSignature",""],["PublicKey",""],["SecretKey","Secret Key"],["Signature",""]]});

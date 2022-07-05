@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["WithdrawEvent","Struct that represents a SentPaymentEvent."]]});

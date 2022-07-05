@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["AccountWithStateView",""]],"trait":[["AsAccountWithStateView",""]]});

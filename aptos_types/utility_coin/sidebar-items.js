@@ -1,0 +1,1 @@
+initSidebarItems({"static":[["TEST_COIN_TYPE",""]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["native_sip_hash","Serialize the MoveValue with BCS and then feed the bytes into SipHasher. This is not cryptographically secure."]]});

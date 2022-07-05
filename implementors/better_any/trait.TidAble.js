@@ -1,0 +1,4 @@
+(function() {var implementors = {};
+implementors["better_any"] = [];
+implementors["move_table_extension"] = [{"text":"impl&lt;'a&gt; <a class=\"trait\" href=\"better_any/trait.TidAble.html\" title=\"trait better_any::TidAble\">TidAble</a>&lt;'a&gt; for <a class=\"struct\" href=\"move_table_extension/struct.NativeTableContext.html\" title=\"struct move_table_extension::NativeTableContext\">NativeTableContext</a>&lt;'a&gt;","synthetic":false,"types":["move_table_extension::NativeTableContext"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

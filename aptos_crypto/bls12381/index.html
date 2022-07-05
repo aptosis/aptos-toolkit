@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="This module provides APIs for Boneh-Lynn-Shacham (BLS) multi-signatures on top of Barreto-Lynn-Scott BLS12-381 elliptic curves. This module wraps the blst library."><meta name="keywords" content="rust, rustlang, rust-lang, bls12381"><title>aptos_crypto::bls12381 - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../aptos_crypto/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../aptos_crypto/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Module bls12381</a></h2><div class="sidebar-elems"><section><div class="block"><ul><li><a href="#modules">Modules</a></li></ul></div></section><div id="sidebar-vars" data-name="bls12381" data-ty="mod" data-relpath="./"></div><script defer src="./sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../aptos_crypto/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Module <a href="../index.html">aptos_crypto</a>::<wbr><a class="mod" href="#">bls12381</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/aptos_crypto/bls12381/mod.rs.html#4-195">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>This module provides APIs for Boneh-Lynn-Shacham (BLS) multi-signatures on top of Barreto-Lynn-Scott
+BLS12-381 elliptic curves. This module wraps the <a href="https://github.com/supranational/blst">blst</a>
+library.</p>
+<p>More specifically, we build BLS multisignatures as described in <sup id="fnref1"><a href="#fn1">1</a></sup>, <sup id="fnref2"><a href="#fn2">2</a></sup> but using
+the proof-of-possession (PoP) scheme from <sup id="fnref3"><a href="#fn3">3</a></sup> to prevent rogue-key attacks <sup id="fnref4"><a href="#fn4">4</a></sup> where
+malicious signers adversarially pick their public keys in order to forge a multisignature.</p>
+<p>We implement the <code>Minimal-pubkey-size</code> variant from the BLS IETF draft standard <sup id="fnref5"><a href="#fn5">5</a></sup>,
+which puts the signatures in the group $\mathbb{G}_2$ and the public keys in $\mathbb{G}_1$. The
+reasoning behind this choice is to minimize public key size, since public keys are posted on the
+blockchain.</p>
+<h2 id="overview-of-bls-multisignatures"><a href="#overview-of-bls-multisignatures">Overview of BLS multisignatures</a></h2>
+<p>In a <em>normal signature scheme</em>, we have a single <em>signer</em> who generates its own key-pair:
+a <em>private-key</em> and a corresponding <em>public key</em>. The signer can produce a <em>signature</em> on a
+<em>message</em> <code>m</code> using its private-key. Any <em>verifier</em> who has the public key can check that
+the signature on <code>m</code> was produced by the signer.</p>
+<p>In a <em>multisignature scheme</em>, we have <code>n</code> signers. Each signer <code>i</code> has their own key-pair <code>(sk_i, pk_i)</code>.
+Any subset of <code>k</code> signers can collaborate to produce a succinct signature on the same message <code>m</code>.
+This is referred to as a <em>multisignature</em> on <code>m</code>.</p>
+<p>Typically, the <code>k</code> signers first agree on the message <code>m</code> via some protocol (e.g., <code>m</code> is the
+latest block header in a blockchain protocol). Then, each signer produces a <em>signature share</em> <code>s_i</code>
+on <code>m</code> using their own private key <code>sk_i</code>. After this, each signer <code>i</code> sends their signature
+share <code>s_i</code> to an <em>aggregator</em>: a dedicated, untrusted party who is responsible for aggregating
+the signature shares into the final multisignature. For example, one of the signers themselves
+could be the aggregator.</p>
+<p>Lastly, the aggregator can proceed in two ways:</p>
+<ol>
+<li>
+<p>Pessimistically verify each signature share, discarding the invalid ones, and then aggregate
+the final multisignature.</p>
+</li>
+<li>
+<p>Optimistically aggregate all signature shares, but verify the final multisignature at the end
+to ensure no bad signature shares were included. If the multisignature does not verify,
+revert to the pessimistic mode (or consider other approaches <sup id="fnref6"><a href="#fn6">6</a></sup>).</p>
+</li>
+</ol>
+<p>Either way, the end result (assuming some of the signature shares were valid) will be a valid
+multisignature on <code>m</code> which can be verified against an <em>aggregate public key</em> of the involved
+signers.</p>
+<p>Specifically, any verifier who knows the public keys of the signers whose shares were aggregated
+into the multisignature, can first compute an <em>aggregate public key</em> as a function of these
+public keys and then verify the multisignature under this aggregate public key.</p>
+<p>Extremely important for security is that the verifier first ensure these public keys came with
+valid proofs-of-possession (PoPs). Otherwise, multisignatures can be forged via <em>rogue-key attacks</em>
+<sup id="fnref4"><a href="#fn4">4</a></sup>.</p>
+<h2 id="a-note-on-subgroup-checks"><a href="#a-note-on-subgroup-checks">A note on subgroup checks</a></h2>
+<p>This library was written so that users who know nothing about <em>small subgroup attacks</em> need not
+worry about them <sup id="fnref7"><a href="#fn7">7</a></sup>, <sup id="fnref8"><a href="#fn8">8</a></sup>, as long as library users always verify a public key’s
+proof-of-possession (PoP) before aggregating it with other PKs or before verifying signatures
+with it.</p>
+<p>Nonetheless, we still provide <code>group_check</code> methods for the <code>PublicKey</code> and <code>Signature</code> structs,
+in case manual verification of subgroup membership is needed.</p>
+<h2 id="a-note-on-domain-separation-tags-dsts"><a href="#a-note-on-domain-separation-tags-dsts">A note on domain separation tags (DSTs)</a></h2>
+<p>Internal to this wrapper’s implementation (and to the underlying blst library) is the careful
+use of domain separation tags (DSTs) as per the BLS IETF draft standard <sup id="fnref5"><a href="#fn5">5</a></sup>.</p>
+<p>Specifically, <strong>when signing a message</strong> <code>m</code>, instead of signing as <code>H(m)^sk</code>, where <code>sk</code> is the
+secret key, the library actually signs as <code>H(sig_dst | m)^sk</code>, where <code>sig_dst</code> is a domain
+separation tag for message signing.</p>
+<p>In contrast, <strong>when computing a proof-of-possesion (PoP)</strong>, instead of signing the public key as
+<code>H(pk)^sk</code>, the  library actually signs as <code>H(sig_pop | pk)^sk</code>, where <code>sig_pop</code> is a domain
+separation tag for signatures used during PoP creation.</p>
+<p>This way, we can clearly separate the message spaces of these two use cases of the secret key <code>sk</code>.</p>
+<h2 id="how-to-use-this-module-to-aggregate-and-verify-multisignatures"><a href="#how-to-use-this-module-to-aggregate-and-verify-multisignatures">How to use this module to aggregate and verify multisignatures</a></h2>
+<p>A typical use of the library would look as follows:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">std::iter::zip</span>;
+<span class="kw">use</span> <span class="ident">aptos_crypto::test_utils::KeyPair</span>;
+<span class="kw">use</span> <span class="ident">aptos_crypto</span>::{<span class="ident">bls12381</span>, <span class="ident">Signature</span>, <span class="ident">SigningKey</span>, <span class="ident">Uniform</span>};
+<span class="kw">use</span> <span class="ident">aptos_crypto::bls12381::bls12381_keys</span>::{<span class="ident">PrivateKey</span>, <span class="ident">PublicKey</span>};
+<span class="kw">use</span> <span class="ident">aptos_crypto::bls12381::ProofOfPossession</span>;
+<span class="kw">use</span> <span class="ident">aptos_crypto_derive</span>::{<span class="ident">CryptoHasher</span>, <span class="ident">BCSCryptoHash</span>};
+<span class="kw">use</span> <span class="ident">rand_core::OsRng</span>;
+<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>};
+
+<span class="comment">// Each signer locally generates their own BLS key-pair with a proof-of-possesion (PoP).</span>
+<span class="comment">// We simulate this here, by storing each signer&#39;s key-pair in a vector.</span>
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">OsRng</span>;
+
+<span class="kw">let</span> <span class="ident">num_signers</span> <span class="op">=</span> <span class="number">1000</span>;
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">key_pairs</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pops</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+<span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">num_signers</span> {
+    <span class="kw">let</span> <span class="ident">kp</span> <span class="op">=</span> <span class="ident">KeyPair</span>::<span class="op">&lt;</span><span class="ident">PrivateKey</span>, <span class="ident">PublicKey</span><span class="op">&gt;</span><span class="ident">::generate</span>(<span class="kw-2">&amp;mut</span> <span class="ident">rng</span>);
+    <span class="ident">pops</span>.<span class="ident">push</span>(<span class="ident">ProofOfPossession::create_with_pubkey</span>(<span class="kw-2">&amp;</span><span class="ident">kp</span>.<span class="ident">private_key</span>, <span class="kw-2">&amp;</span><span class="ident">kp</span>.<span class="ident">public_key</span>));
+    <span class="comment">// Alternatively, but slower, can choose not to provide the PK and have it computed inside</span>
+    <span class="comment">// pops.push(ProofOfPossession::create(&amp;kp.private_key));</span>
+    <span class="ident">key_pairs</span>.<span class="ident">push</span>(<span class="ident">kp</span>);
+}
+
+<span class="comment">// Any arbitrary struct can be signed as long as it is properly &quot;derived&quot;</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">CryptoHasher</span>, <span class="ident">BCSCryptoHash</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="kw">struct</span> <span class="ident">Message</span>(<span class="ident">String</span>);
+
+<span class="comment">// Each signer then computes a signature share on a message. Again, we simulate using a vector.</span>
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sigshares</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+<span class="kw">let</span> <span class="ident">message</span> <span class="op">=</span> <span class="ident">Message</span>(<span class="string">&quot;test&quot;</span>.<span class="ident">to_owned</span>()); <span class="comment">// b&quot;some random message&quot;;</span>
+<span class="kw">for</span> <span class="ident">kp</span> <span class="kw">in</span> <span class="ident">key_pairs</span>.<span class="ident">iter</span>() {
+    <span class="kw">let</span> <span class="ident">sig</span> <span class="op">=</span> <span class="ident">kp</span>.<span class="ident">private_key</span>.<span class="ident">sign</span>(<span class="kw-2">&amp;</span><span class="ident">message</span>);
+    <span class="ident">sigshares</span>.<span class="ident">push</span>(<span class="ident">sig</span>);
+}
+
+<span class="comment">// Then, an aggregator receives some of these signature shares and will attempt to aggregate</span>
+<span class="comment">// them in a multisig. This aggregator can proceed _optimistically_ as follows:</span>
+
+<span class="comment">// First, when the aggregator boots up, it must verify that each signer&#39;s public key has a valid</span>
+<span class="comment">// proof-of-possession (PoP)!</span>
+
+<span class="comment">///////////////////////////////////////////////////////////////////////////////////////////////</span>
+<span class="comment">// WARNING: The aggregator and any other party verifying multisigs or signature shares MUST  //</span>
+<span class="comment">// verify *every* signer&#39;s PoP before verifying any signature or multisignature.             //</span>
+<span class="comment">//                                                                                           //</span>
+<span class="comment">//                  The importance of this step cannot be overstated!                        //</span>
+<span class="comment">//                                                                                           //</span>
+<span class="comment">///////////////////////////////////////////////////////////////////////////////////////////////</span>
+<span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">pops</span>.<span class="ident">len</span>() {
+    <span class="macro">assert!</span>(<span class="ident">pops</span>[<span class="ident">i</span>].<span class="ident">verify</span>(<span class="kw-2">&amp;</span><span class="ident">key_pairs</span>[<span class="ident">i</span>].<span class="ident">public_key</span>).<span class="ident">is_ok</span>());
+}
+
+<span class="comment">// Second, now that the aggregator trusts the set of public keys, it can safely aggregate</span>
+<span class="comment">// signature shares _optimistically_ into a multisignature which hopefully verifies. In this</span>
+<span class="comment">// example, we assume the aggregator receives a signature share from every third signer (for simplicity).</span>
+
+<span class="comment">// Here, we simulate the aggregator receiving some signature shares.</span>
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sigshares_received</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+<span class="kw">for</span> <span class="ident">sigshare</span> <span class="kw">in</span> <span class="ident">sigshares</span>.<span class="ident">into_iter</span>().<span class="ident">step_by</span>(<span class="number">3</span>) {
+    <span class="ident">sigshares_received</span>.<span class="ident">push</span>(<span class="ident">sigshare</span>);
+}
+
+<span class="comment">// Here, the aggregator aggregates the received signature shares into a multisignature.</span>
+<span class="kw">let</span> <span class="ident">multisig</span> <span class="op">=</span> <span class="ident">bls12381::Signature::aggregate</span>(<span class="ident">sigshares_received</span>.<span class="ident">clone</span>()).<span class="ident">unwrap</span>();
+
+<span class="comment">// Third, the aggregator checks that the _optimistic_ aggregation from above succeeded by</span>
+<span class="comment">// verifying the multisig. For this, the aggregator will need to know the public keys of the</span>
+<span class="comment">// signers whose signature shares were aggregated, so that it can aggregate them.</span>
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pubkeys_to_agg</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+<span class="kw">for</span> <span class="ident">kp</span> <span class="kw">in</span> <span class="ident">key_pairs</span>.<span class="ident">iter</span>().<span class="ident">step_by</span>(<span class="number">3</span>) {
+    <span class="ident">pubkeys_to_agg</span>.<span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="ident">kp</span>.<span class="ident">public_key</span>);
+}
+
+<span class="kw">let</span> <span class="ident">aggpk</span> <span class="op">=</span> <span class="ident">PublicKey::aggregate</span>(<span class="ident">pubkeys_to_agg</span>.<span class="ident">clone</span>()).<span class="ident">unwrap</span>();
+
+<span class="comment">// Lastly, the aggregator checks the aggregated multisig verifies successfully.</span>
+<span class="macro">assert!</span>(<span class="ident">multisig</span>.<span class="ident">verify</span>(<span class="kw-2">&amp;</span><span class="ident">message</span>, <span class="kw-2">&amp;</span><span class="ident">aggpk</span>).<span class="ident">is_ok</span>());
+
+<span class="comment">// If the multisig failed verification, the aggregator can individually verify each of the</span>
+<span class="comment">// signature shares to identify which ones are invalid and exclude them. There are also optimized</span>
+<span class="comment">// methods for identifying bad signature shares faster when their relative frequency is low [^LM07].</span>
+<span class="comment">// However, we will not implement these yet.</span>
+<span class="kw">for</span> (<span class="ident">sigshare</span>, <span class="ident">pk</span>) <span class="kw">in</span> <span class="ident">zip</span>(<span class="ident">sigshares_received</span>, <span class="ident">pubkeys_to_agg</span>) {
+    <span class="macro">assert!</span>(<span class="ident">sigshare</span>.<span class="ident">verify</span>(<span class="kw-2">&amp;</span><span class="ident">message</span>, <span class="kw-2">&amp;</span><span class="ident">pk</span>).<span class="ident">is_ok</span>());
+}</code></pre></div>
+<p>References:</p>
+<div class="footnotes"><hr><ol><li id="fn1">&nbsp;<a href="#fnref1">↩</a></li><li id="fn2">&nbsp;<a href="#fnref2">↩</a></li><li id="fn3">&nbsp;<a href="#fnref3">↩</a></li><li id="fn4">&nbsp;<a href="#fnref4">↩</a></li><li id="fn5"><p>BLS Signatures; by D. Boneh, S. Gorbunov, R. Wahby, H. Wee, Z. Zhang; https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature
+<sup class="footnote-reference"><a href="#Bold03">1</a></sup>: Threshold Signatures, Multisignatures and Blind Signatures Based on the Gap-Diffie-Hellman-Group Signature Scheme; by Boldyreva, Alexandra; in PKC 2003; 2002
+<sup class="footnote-reference"><a href="#BLS04">2</a></sup>: Short Signatures from the Weil Pairing; by Boneh, Dan and Lynn, Ben and Shacham, Hovav; in Journal of Cryptology; 2004; https://doi.org/10.1007/s00145-004-0314-9
+<sup class="footnote-reference"><a href="#BCM+15e">3</a></sup> Subgroup security in pairing-based cryptography; by Paulo S.  L.  M.  Barreto and Craig Costello and Rafael Misoczki and Michael Naehrig and Geovandro C.  C.  F.  Pereira and Gustavo Zanon; in Cryptology ePrint Archive, Paper 2015/247; 2015; https://eprint.iacr.org/2015/247
+<sup class="footnote-reference"><a href="#LL97">4</a></sup> A key recovery attack on discrete log-based schemes using a prime order subgroup; by Lim, Chae Hoon and Lee, Pil Joong; in Advances in Cryptology — CRYPTO ’97; 1997
+<sup class="footnote-reference"><a href="#LM07">5</a></sup>: Finding Invalid Signatures in Pairing-Based Batches; by Law, Laurie and Matt, Brian J.; in Cryptography and Coding; 2007
+<sup class="footnote-reference"><a href="#MOR01">6</a></sup>: Accountable-Subgroup Multisignatures: Extended Abstract; by Micali, Silvio and Ohta, Kazuo and Reyzin, Leonid; in Proceedings of the 8th ACM Conference on Computer and Communications Security; 2001; https://doi-org.libproxy.mit.edu/10.1145/501983.502017
+<sup class="footnote-reference"><a href="#RY07">7</a></sup>: The Power of Proofs-of-Possession: Securing Multiparty Signatures against Rogue-Key Attacks; by Ristenpart, Thomas and Yilek, Scott; in Advances in Cryptology - EUROCRYPT 2007; 2007&nbsp;<a href="#fnref5">↩</a></p></li><li id="fn6">&nbsp;<a href="#fnref6">↩</a></li><li id="fn7">&nbsp;<a href="#fnref7">↩</a></li><li id="fn8">&nbsp;<a href="#fnref8">↩</a></li></ol></div></div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left import-item"><code>pub use bls12381_keys::<a class="struct" href="bls12381_keys/struct.PrivateKey.html" title="struct aptos_crypto::bls12381::bls12381_keys::PrivateKey">PrivateKey</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item"><code>pub use bls12381_keys::<a class="struct" href="bls12381_keys/struct.PublicKey.html" title="struct aptos_crypto::bls12381::bls12381_keys::PublicKey">PublicKey</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item"><code>pub use bls12381_pop::<a class="struct" href="bls12381_pop/struct.ProofOfPossession.html" title="struct aptos_crypto::bls12381::bls12381_pop::ProofOfPossession">ProofOfPossession</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item"><code>pub use bls12381_sigs::<a class="struct" href="bls12381_sigs/struct.Signature.html" title="struct aptos_crypto::bls12381::bls12381_sigs::Signature">Signature</a>;</code></div><div class="item-right docblock-short"></div></div></div><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="bls12381_keys/index.html" title="aptos_crypto::bls12381::bls12381_keys mod">bls12381_keys</a></div><div class="item-right docblock-short"><p>This module provides APIs for private keys and public keys used in BLS multi-signatures
+implemented on top of BLS12-381 elliptic curves (https://github.com/supranational/blst).</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="bls12381_pop/index.html" title="aptos_crypto::bls12381::bls12381_pop mod">bls12381_pop</a></div><div class="item-right docblock-short"><p>This module provides APIs for proofs-of-possesion (PoPs) used in BLS multi-signatures
+implemented on top of BLS12-381 elliptic curves (https://github.com/supranational/blst).</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="bls12381_sigs/index.html" title="aptos_crypto::bls12381::bls12381_sigs mod">bls12381_sigs</a></div><div class="item-right docblock-short"><p>This module provides APIs for aggregating and verifying BLS multi-signatures
+implemented on top of BLS12-381 elliptic curves (https://github.com/supranational/blst).</p>
+</div></div></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="aptos_crypto" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
+</body></html>

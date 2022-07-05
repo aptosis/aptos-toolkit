@@ -1,0 +1,4 @@
+(function() {var implementors = {};
+implementors["aptos_state_view"] = [];
+implementors["aptos_vm"] = [{"text":"impl&lt;'block, S:&nbsp;<a class=\"trait\" href=\"aptos_state_view/trait.StateView.html\" title=\"trait aptos_state_view::StateView\">StateView</a>&gt; <a class=\"trait\" href=\"aptos_state_view/trait.StateView.html\" title=\"trait aptos_state_view::StateView\">StateView</a> for <a class=\"struct\" href=\"aptos_vm/data_cache/struct.StateViewCache.html\" title=\"struct aptos_vm::data_cache::StateViewCache\">StateViewCache</a>&lt;'block, S&gt;","synthetic":false,"types":["aptos_vm::data_cache::StateViewCache"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

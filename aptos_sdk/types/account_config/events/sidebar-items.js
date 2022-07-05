@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["deposit",""],["new_block",""],["new_epoch",""],["withdraw",""]],"struct":[["DepositEvent","Struct that represents a DepositPaymentEvent."],["NewBlockEvent","Struct that represents a NewBlockEvent."],["NewEpochEvent","Struct that represents a NewEpochEvent."],["WithdrawEvent","Struct that represents a SentPaymentEvent."]]});
