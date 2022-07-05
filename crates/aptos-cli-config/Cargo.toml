@@ -1,0 +1,16 @@
+[package]
+name = "aptos-cli-config"
+description = "Aptos CLI configuration utilities extracted from the official Aptos CLI."
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.42"
+aptos-crypto = "0.1.0"
+aptos-types = "0.1.0"
+base64 = "0.13.0"
+bcs = "0.1.3"
+hex = "0.4.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.8.24"
+thiserror = "1.0"

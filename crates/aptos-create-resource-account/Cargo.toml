@@ -1,0 +1,31 @@
+[package]
+name = "aptos-create-resource-account"
+version = "0.1.0"
+description = "CLI for creating Aptos resource accounts."
+homepage = "https://moving.wtf"
+repository = "https://github.com/movingco/move-ts"
+authors = ["Ian Macalinao <ian@aptos.is>"]
+license = "Apache-2.0"
+edition = "2021"
+keywords = ["move", "aptos", "account", "cli"]
+
+[dependencies]
+anyhow = "1.0.42"
+aptos-cli-common = { version = "0.1.0", path = "../aptos-cli-common" }
+aptos-cli-config = { version = "0.1.0", path = "../aptos-cli-config" }
+aptos-crypto = { version = "0.1.0" }
+aptos-keygen = "0.1.0"
+aptos-rest-client = "0.1.0"
+aptos-types = "0.1.0"
+async-trait = "0.1.56"
+clap = { version = "3.2", features = ["derive"] }
+clitool = "0.1.0"
+mv-core-types = { version = "=0.1.5", features = ["address32"] }
+serde = { version = "1.0", features = ["derive"] }
+static-address = { version = "0.1.0", features = ["address32"] }
+tokio = { version = "1.18.2", features = ["full"] }
+bcs = "0.1.3"
+
+[[bin]]
+name = "aptos-create-resource-account"
+path = "src/bin/aptos-create-resource-account.rs"
