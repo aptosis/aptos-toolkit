@@ -1,6 +1,6 @@
-# Move IDL
+# Aptos Toolkit 🛠
 
-Interface definition generator and standard for Move packages.
+A collection of scripts and tools for interacting with the [Aptos blockchain](https://aptoslabs.com).
 
 _Documentation is currently extremely sparse but will be improved in the near future._
 
@@ -30,4 +30,4 @@ This will generate a series of JSON files in your `build/idls/` directory.
 
 ## License
 
-Move IDL is licensed under the Apache License, Version 2.0.
+Aptos Toolkit is licensed under the Apache License, Version 2.0.

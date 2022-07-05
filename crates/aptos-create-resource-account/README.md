@@ -1,10 +1,32 @@
 # aptos-create-resource-account
 
-[![Crates.io](https://img.shields.io/crates/v/aptos-create-resource-account)](https://crates.io/crates/aptos-create-resource-account)
-[![License](https://img.shields.io/crates/l/aptos-create-resource-account)](https://github.com/aptosis/aptos-toolkit/LICENSE.txt)
-
 CLI for creating Aptos resource accounts.
 
-## License
+*Note: this CLI will be changed in the near future, since resource accounts are still being developed in aptos-core.*
 
-`aptos-create-resource-account` is licensed under the Apache License, Version 2.0.
+## Setup
+
+To use this CLI, you may install this crate via Cargo:
+
+```bash
+cargo install aptos-create-resource-account
+```
+
+You should also have an Aptos CLI configuration file, which can be created using:
+
+```bash
+aptos init
+```
+
+## Usage
+
+Run the following command to create a new resource account:
+
+```bash
+aptos-create-resource-account my-account
+```
+
+This will create a profile in your `.aptos/config.yaml` with the name `my-account`.
+You can then use this profile to publish modules, run scripts, etc.
+
+License: Apache-2.0

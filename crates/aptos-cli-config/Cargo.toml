@@ -1,8 +1,13 @@
 [package]
 name = "aptos-cli-config"
-description = "Aptos CLI configuration utilities extracted from the official Aptos CLI."
 version = "0.1.0"
+description = "Aptos CLI configuration utilities extracted from the official Aptos CLI."
+homepage = "https://moving.wtf"
+repository = "https://github.com/movingco/move-ts"
+authors = ["Ian Macalinao <ian@aptos.is>"]
+license = "Apache-2.0"
 edition = "2021"
+keywords = ["move", "aptos", "config", "cli"]
 
 [dependencies]
 anyhow = "1.0.42"
