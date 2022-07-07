@@ -19,6 +19,8 @@
             name = "devshell";
             buildInputs = [
               # Build tools
+              cargo-readme
+
               rustup
 
               cmake

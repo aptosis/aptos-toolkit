@@ -1,13 +1,13 @@
 # aptos-publish
 
-A version of `aptos move publish` which supports accounts.
+CLI for publishing Move modules to Aptos.
 
 ## Setup
 
 To use this CLI, you may install this crate via Cargo:
 
 ```bash
-cargo install aptos-create-resource-account
+cargo install aptos-publish
 ```
 
 You should also have an Aptos CLI configuration file, which can be created using:
@@ -18,13 +18,10 @@ aptos init
 
 ## Usage
 
-Run the following command to create a new resource account:
+Run the following command to publish the module in the current directory:
 
 ```bash
-aptos-create-resource-account my-account
+aptos-publish
 ```
-
-This will create a profile in your `.aptos/config.yaml` with the name `my-account`.
-You can then use this profile to publish modules, run scripts, etc.
 
 License: Apache-2.0
