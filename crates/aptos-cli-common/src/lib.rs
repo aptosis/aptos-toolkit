@@ -553,8 +553,7 @@ impl TransactionOptions {
         let client = self.rest_client()?;
 
         // Get sender address
-        let sender_address = AuthenticationKey::ed25519(&sender_key.public_key()).derived_address();
-        let sender_address = AccountAddress::new(*sender_address);
+        let sender_address = self.profile_options.account_address()?;
 
         // Get sequence number for account
         let sequence_number = get_sequence_number(&client, sender_address).await?;

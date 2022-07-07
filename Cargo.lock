@@ -296,6 +296,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "aptos-move-run"
+version = "0.1.1"
+dependencies = [
+ "anyhow",
+ "aptos-cli-common",
+ "aptos-cli-config",
+ "aptos-rest-client",
+ "aptos-types",
+ "async-trait",
+ "bcs",
+ "clap 3.2.8",
+ "clitool",
+ "hex",
+ "mv-core-types",
+ "serde 1.0.138",
+ "tokio",
+]
+
+[[package]]
 name = "aptos-parallel-executor"
 version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
