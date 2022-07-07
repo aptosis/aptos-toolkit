@@ -1,7 +1,7 @@
 [package]
 name = "aptos-publish"
 version = "0.1.0"
-description = "CLI for creating Aptos resource accounts."
+description = "CLI for publishing Move modules to Aptos."
 homepage = "https://moving.wtf"
 repository = "https://github.com/movingco/move-ts"
 authors = ["Ian Macalinao <ian@aptos.is>"]
