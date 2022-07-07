@@ -1,9 +1,9 @@
 [package]
 name = "aptos-move-run"
 version = "0.1.1"
-description = "CLI for publishing Move modules to Aptos."
+description = "CLI for running arbitrary Move functions on Aptos."
 homepage = "https://moving.wtf"
-repository = "https://github.com/movingco/move-ts"
+repository = "https://github.com/aptosis/aptos-toolkit"
 authors = ["Ian Macalinao <ian@aptos.is>"]
 license = "Apache-2.0"
 edition = "2021"

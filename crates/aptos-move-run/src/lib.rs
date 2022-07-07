@@ -1,4 +1,4 @@
-//! CLI for publishing Move modules to Aptos.
+//! CLI for running arbitrary Move functions on Aptos.
 //!
 //! # Setup
 //!
