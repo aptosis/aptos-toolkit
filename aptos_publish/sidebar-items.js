@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["submit_transaction","Submits a [`TransactionPayload`] as signed by the `sender_key`"]],"struct":[["AptosPublishTool","Command to publish a Move module to Aptos"]]});

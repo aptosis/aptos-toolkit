@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["fund_account","Fund account (and possibly create it) from a faucet"],["get_chain_id","Retrieves the chain id from the rest client"],["get_sequence_number","Retrieves sequence number from the rest client"]]});
+initSidebarItems({"fn":[["fund_account","Fund account (and possibly create it) from a faucet"],["get_chain_id","Retrieves the chain id from the rest client"],["get_sequence_number","Retrieves sequence number from the rest client"],["parse_map","Parses an inline map of values"]]});

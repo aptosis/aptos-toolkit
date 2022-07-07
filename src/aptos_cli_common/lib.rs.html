@@ -578,6 +578,38 @@
 <span id="573">573</span>
 <span id="574">574</span>
 <span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
+<span id="597">597</span>
+<span id="598">598</span>
+<span id="599">599</span>
+<span id="600">600</span>
+<span id="601">601</span>
+<span id="602">602</span>
+<span id="603">603</span>
+<span id="604">604</span>
+<span id="605">605</span>
+<span id="606">606</span>
+<span id="607">607</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Common modules for creating an Aptos CLI command.</span>
 
 <span class="kw">mod</span> <span class="ident">summary</span>;
@@ -608,6 +640,7 @@
 <span class="kw">use</span> <span class="ident">aptos_types</span>::{<span class="ident">account_address::AccountAddress</span>, <span class="ident">chain_id::ChainId</span>};
 <span class="kw">use</span> <span class="ident">clap</span>::{<span class="ident">ArgEnum</span>, <span class="ident">Parser</span>};
 <span class="kw">use</span> <span class="ident">std</span>::{
+    <span class="ident">collections::BTreeMap</span>,
     <span class="ident">fmt</span>::{<span class="ident">Debug</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span>},
     <span class="ident">path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>},
     <span class="ident">str::FromStr</span>,
@@ -1151,6 +1184,37 @@
             .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">CliError::ApiError</span>(<span class="ident">err</span>.<span class="ident">to_string</span>()))<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(<span class="ident">response</span>.<span class="ident">into_inner</span>())
+    }
+}
+
+<span class="doccomment">/// Options for compiling a move package dir</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Parser</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MovePackageDir</span> {
+    <span class="doccomment">/// Path to a move package (the folder with a Move.toml file)</span>
+    <span class="attribute">#[<span class="ident">clap</span>(<span class="ident">long</span>, <span class="ident">parse</span>(<span class="ident">from_os_str</span>), <span class="ident">default_value</span> <span class="op">=</span> <span class="string">&quot;.&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="ident">package_dir</span>: <span class="ident">PathBuf</span>,
+    <span class="doccomment">/// Path to save the compiled move package</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Defaults to `&lt;package_dir&gt;/build`</span>
+    <span class="attribute">#[<span class="ident">clap</span>(<span class="ident">long</span>, <span class="ident">parse</span>(<span class="ident">from_os_str</span>))]</span>
+    <span class="kw">pub</span> <span class="ident">output_dir</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Named addresses for the move binary</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Example: alice=0x1234, bob=0x5678</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note: This will fail if there are duplicates in the Move.toml file remove those first.</span>
+    <span class="attribute">#[<span class="ident">clap</span>(<span class="ident">long</span>, <span class="ident">parse</span>(<span class="ident">try_from_str</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::utils::parse_map</span>), <span class="ident">default_value</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="ident">named_addresses</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">AccountAddressWrapper</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">MovePackageDir</span> {
+    <span class="doccomment">/// Retrieve the NamedAddresses, resolving all the account addresses accordingly</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">named_addresses</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">AccountAddress</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">named_addresses</span>
+            .<span class="ident">clone</span>()
+            .<span class="ident">into_iter</span>()
+            .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">key</span>, <span class="ident">value</span>)<span class="op">|</span> (<span class="ident">key</span>, <span class="ident">value</span>.<span class="ident">account_address</span>))
+            .<span class="ident">collect</span>()
     }
 }
 </code></pre></div>

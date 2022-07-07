@@ -20,6 +20,7 @@ sourcesIndex["aptos_log_derive"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["aptos_logger"] = {"name":"","files":["aptos_logger.rs","counters.rs","event.rs","filter.rs","kv.rs","lib.rs","logger.rs","macros.rs","metadata.rs","sample.rs","security.rs","struct_log.rs","tracing_adapter.rs"]};
 sourcesIndex["aptos_metrics_core"] = {"name":"","files":["lib.rs","op_counters.rs"]};
 sourcesIndex["aptos_parallel_executor"] = {"name":"","files":["errors.rs","executor.rs","lib.rs","outcome_array.rs","scheduler.rs","task.rs","txn_last_input_output.rs"]};
+sourcesIndex["aptos_publish"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["aptos_rest_client"] = {"name":"","files":["aptos.rs","error.rs","faucet.rs","lib.rs","response.rs","state.rs","types.rs"]};
 sourcesIndex["aptos_sdk"] = {"name":"","files":["lib.rs","transaction_builder.rs","types.rs"]};
 sourcesIndex["aptos_state_view"] = {"name":"","files":["account_with_state_cache.rs","account_with_state_view.rs","lib.rs"]};
