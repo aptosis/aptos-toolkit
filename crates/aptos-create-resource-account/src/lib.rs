@@ -143,7 +143,7 @@ impl AptosCreateResourceAccountTool {
                     state_key_hash: _,
                     data,
                 } => {
-                    if data.typ.name.as_str() == "Account" {
+                    if data.typ.name.as_str() == "SignerCapabilityStore" {
                         Some(address.inner())
                     } else {
                         None
