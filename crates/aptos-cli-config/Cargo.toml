@@ -1,6 +1,6 @@
 [package]
 name = "aptos-cli-config"
-version = "0.1.0"
+version = "0.1.1"
 description = "Aptos CLI configuration utilities extracted from the official Aptos CLI."
 homepage = "https://moving.wtf"
 repository = "https://github.com/movingco/move-ts"

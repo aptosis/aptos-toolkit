@@ -1,6 +1,6 @@
 [package]
 name = "aptos-create-resource-account"
-version = "0.1.0"
+version = "0.1.1"
 description = "CLI for creating Aptos resource accounts."
 homepage = "https://moving.wtf"
 repository = "https://github.com/movingco/move-ts"

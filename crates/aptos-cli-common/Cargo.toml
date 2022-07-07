@@ -1,6 +1,6 @@
 [package]
 name = "aptos-cli-common"
-version = "0.1.0"
+version = "0.1.1"
 description = "Common modules for creating an Aptos CLI command."
 homepage = "https://moving.wtf"
 repository = "https://github.com/movingco/move-ts"

@@ -115,7 +115,7 @@ dependencies = [
 
 [[package]]
 name = "aptos-cli-common"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "aptos-cli-config",
@@ -137,7 +137,7 @@ dependencies = [
 
 [[package]]
 name = "aptos-cli-config"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "aptos-crypto",
@@ -152,7 +152,7 @@ dependencies = [
 
 [[package]]
 name = "aptos-create-resource-account"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "aptos-cli-common",
@@ -313,7 +313,7 @@ dependencies = [
 
 [[package]]
 name = "aptos-publish"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "aptos-cli-common",
