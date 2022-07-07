@@ -2,7 +2,7 @@
 name = "aptos-publish"
 version = "0.1.1"
 description = "CLI for publishing Move modules to Aptos."
-homepage = "https://moving.wtf"
+homepage = "https://aptos.is"
 repository = "https://github.com/aptosis/aptos-toolkit"
 authors = ["Ian Macalinao <ian@aptos.is>"]
 license = "Apache-2.0"

@@ -2,7 +2,7 @@
 name = "aptos-cli-common"
 version = "0.1.1"
 description = "Common modules for creating an Aptos CLI command."
-homepage = "https://moving.wtf"
+homepage = "https://aptos.is"
 repository = "https://github.com/aptosis/aptos-toolkit"
 authors = ["Ian Macalinao <ian@aptos.is>"]
 license = "Apache-2.0"

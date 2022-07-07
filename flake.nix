@@ -4,14 +4,15 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    move-nix.url = "github:movingco/move.nix/master";
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
+  outputs = { self, nixpkgs, flake-utils, move-nix, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs {
+        pkgs = (import nixpkgs {
           inherit system;
-        };
+        }) // move-nix.packages.${system};
       in
       {
         devShells = {
@@ -19,6 +20,7 @@
             name = "devshell";
             buildInputs = [
               # Build tools
+              aptos
               cargo-readme
 
               rustup

@@ -2,7 +2,7 @@
 name = "aptos-cli-config"
 version = "0.1.1"
 description = "Aptos CLI configuration utilities extracted from the official Aptos CLI."
-homepage = "https://moving.wtf"
+homepage = "https://aptos.is"
 repository = "https://github.com/aptosis/aptos-toolkit"
 authors = ["Ian Macalinao <ian@aptos.is>"]
 license = "Apache-2.0"
