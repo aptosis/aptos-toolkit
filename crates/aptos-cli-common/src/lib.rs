@@ -28,6 +28,7 @@ use aptos_types::transaction::{
 use aptos_types::{account_address::AccountAddress, chain_id::ChainId};
 use clap::{ArgEnum, Parser};
 use std::{
+    collections::BTreeMap,
     fmt::{Debug, Display, Formatter},
     path::{Path, PathBuf},
     str::FromStr,
@@ -571,5 +572,36 @@ impl TransactionOptions {
             .map_err(|err| CliError::ApiError(err.to_string()))?;
 
         Ok(response.into_inner())
+    }
+}
+
+/// Options for compiling a move package dir
+#[derive(Debug, Parser)]
+pub struct MovePackageDir {
+    /// Path to a move package (the folder with a Move.toml file)
+    #[clap(long, parse(from_os_str), default_value = ".")]
+    pub package_dir: PathBuf,
+    /// Path to save the compiled move package
+    ///
+    /// Defaults to `<package_dir>/build`
+    #[clap(long, parse(from_os_str))]
+    pub output_dir: Option<PathBuf>,
+    /// Named addresses for the move binary
+    ///
+    /// Example: alice=0x1234, bob=0x5678
+    ///
+    /// Note: This will fail if there are duplicates in the Move.toml file remove those first.
+    #[clap(long, parse(try_from_str = crate::utils::parse_map), default_value = "")]
+    pub named_addresses: BTreeMap<String, AccountAddressWrapper>,
+}
+
+impl MovePackageDir {
+    /// Retrieve the NamedAddresses, resolving all the account addresses accordingly
+    pub fn named_addresses(&self) -> BTreeMap<String, AccountAddress> {
+        self.named_addresses
+            .clone()
+            .into_iter()
+            .map(|(key, value)| (key, value.account_address))
+            .collect()
     }
 }

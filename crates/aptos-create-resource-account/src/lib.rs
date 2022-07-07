@@ -36,7 +36,7 @@ use aptos_keygen::KeyGen;
 use aptos_rest_client::{aptos_api_types::WriteSetChange, Transaction};
 use aptos_types::{
     account_address::AccountAddress,
-    transaction::{ScriptFunction, TransactionPayload},
+    transaction::{authenticator::AuthenticationKey, ScriptFunction, TransactionPayload},
 };
 use async_trait::async_trait;
 use clap::Parser;
@@ -48,7 +48,7 @@ pub const DEFAULT_FUNDED_COINS: u64 = 10000;
 
 /// Module address of the deployer.
 pub const DEPLOYER_MODULE_ADDRESS: AccountAddress = static_address::static_address!(
-    "0x5E7F8C1AF79D4963BF0BCD7FCA379370C92C00501A8555E546F24A7362250ECF"
+    "0xcf43589ea2a37ecab7c39657db15939e23e93972bc0481b51c4797c1f2d78a75"
 );
 
 /// Command to create a new account on-chain
@@ -107,16 +107,17 @@ pub struct ProfileInfo {
 }
 
 impl AptosCreateResourceAccountTool {
-    /// Creates the resource account using the provided auth key.
-    pub async fn create_resource_account_with_auth_key(
+    /// Creates the resource account using the provided public key.
+    pub async fn create_resource_account_with_public_key(
         &self,
-        auth_key: &Ed25519PublicKey,
+        public_key: &Ed25519PublicKey,
     ) -> aptos_cli_config::CliTypedResult<Transaction> {
+        let auth_key = AuthenticationKey::ed25519(public_key);
         let create_account_fn = TransactionPayload::ScriptFunction(ScriptFunction::new(
             ModuleId::new(DEPLOYER_MODULE_ADDRESS, ident_str!("Deployer").to_owned()),
             ident_str!("create_resource_account_with_auth_key").to_owned(),
             vec![],
-            vec![bcs::to_bytes(auth_key)?],
+            vec![bcs::to_bytes(&auth_key)?],
         ));
         self.transaction_options
             .submit_transaction(create_account_fn)
@@ -130,7 +131,7 @@ impl AptosCreateResourceAccountTool {
 
         // Next we'll create the account as a resource account.
         let create_tx = self
-            .create_resource_account_with_auth_key(&module_auth_key)
+            .create_resource_account_with_public_key(&module_auth_key)
             .await?;
 
         let module_account_key = create_tx

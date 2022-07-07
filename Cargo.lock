@@ -127,6 +127,7 @@ dependencies = [
  "bcs",
  "clap 3.2.8",
  "hex",
+ "itertools",
  "reqwest",
  "serde 1.0.138",
  "serde_json",
@@ -308,6 +309,29 @@ dependencies = [
  "num_cpus",
  "once_cell",
  "rayon",
+]
+
+[[package]]
+name = "aptos-publish"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "aptos-cli-common",
+ "aptos-cli-config",
+ "aptos-crypto",
+ "aptos-rest-client",
+ "aptos-sdk",
+ "aptos-types",
+ "async-trait",
+ "bcs",
+ "clap 3.2.8",
+ "clitool",
+ "move-deps",
+ "mv-core-types",
+ "serde 1.0.138",
+ "static-address",
+ "tokio",
+ "url",
 ]
 
 [[package]]
