@@ -26,14 +26,15 @@
 //!
 //! This will create a profile in your `.aptos/config.yaml` with the name `my-account`.
 //! You can then use this profile to publish modules, run scripts, etc.
-use anyhow::Result;
+
+use anyhow::{Context, Result};
 use aptos_cli_common::{
     utils::fund_account, FaucetOptions, TransactionOptions, TransactionSummary,
 };
 use aptos_cli_config::{CliConfig, ProfileConfig};
-use aptos_crypto::ed25519::Ed25519PublicKey;
+use aptos_crypto::{ed25519::Ed25519PublicKey, HashValue};
 use aptos_keygen::KeyGen;
-use aptos_rest_client::{aptos_api_types::WriteSetChange, Transaction};
+use aptos_rest_client::Transaction;
 use aptos_types::{
     account_address::AccountAddress,
     transaction::{authenticator::AuthenticationKey, ScriptFunction, TransactionPayload},
@@ -104,13 +105,26 @@ pub struct ProfileInfo {
     pub account: AccountAddress,
 }
 
+/// Gets the address of a resource account.
+pub fn get_resource_account_address(
+    source: &AccountAddress,
+    seed: &[u8],
+) -> Result<AccountAddress> {
+    AccountAddress::from_bytes(
+        HashValue::sha3_256_of(&[bcs::to_bytes(source)?, seed.to_vec()].concat()).as_ref(),
+    )
+    .with_context(|| "Failed to generate resource account address")
+}
+
 impl AptosCreateResourceAccountTool {
     /// Creates the resource account using the provided public key.
     pub async fn create_resource_account_with_public_key(
         &self,
         public_key: &Ed25519PublicKey,
-    ) -> aptos_cli_config::CliTypedResult<Transaction> {
+    ) -> Result<(Transaction, AccountAddress)> {
         let auth_key = AuthenticationKey::ed25519(public_key);
+        let profile_bytes = &bcs::to_bytes(self.new_profile.as_bytes())?;
+        let auth_key_bytes = &bcs::to_bytes(&auth_key)?;
         let create_account_fn = TransactionPayload::ScriptFunction(ScriptFunction::new(
             ModuleId::new(
                 APTOS_FRAMEWORK_ADDRESS,
@@ -118,14 +132,20 @@ impl AptosCreateResourceAccountTool {
             ),
             ident_str!("create_resource_account").to_owned(),
             vec![],
-            vec![
-                bcs::to_bytes(self.new_profile.as_bytes())?,
-                bcs::to_bytes(&auth_key)?,
-            ],
+            vec![profile_bytes.clone(), auth_key_bytes.clone()],
         ));
-        self.transaction_options
+
+        let address = get_resource_account_address(
+            &self.transaction_options.profile_options.account_address()?,
+            self.new_profile.as_bytes(),
+        )?;
+
+        let tx = self
+            .transaction_options
             .submit_transaction(create_account_fn)
-            .await
+            .await?;
+
+        Ok((tx, address))
     }
 
     async fn generate_profile(&self) -> Result<AptosCreateResourceAccountResult> {
@@ -134,29 +154,9 @@ impl AptosCreateResourceAccountTool {
             KeyGen::from_os_rng().generate_ed25519_keypair();
 
         // Next we'll create the account as a resource account.
-        let create_tx = self
+        let (create_tx, module_account_key) = self
             .create_resource_account_with_public_key(&module_auth_key)
             .await?;
-
-        let module_account_key = create_tx
-            .transaction_info()?
-            .changes
-            .iter()
-            .find_map(|change| match change {
-                WriteSetChange::WriteResource {
-                    address,
-                    state_key_hash: _,
-                    data,
-                } => {
-                    if data.typ.name.as_str() == "SignerCapabilityStore" {
-                        Some(address.inner())
-                    } else {
-                        None
-                    }
-                }
-                _ => None,
-            })
-            .unwrap();
 
         let rest_url = self
             .transaction_options
@@ -166,7 +166,7 @@ impl AptosCreateResourceAccountTool {
         let new_profile = ProfileConfig {
             private_key: Some(module_private_key),
             public_key: Some(module_auth_key.clone()),
-            account: Some(*module_account_key),
+            account: Some(module_account_key),
             rest_url: Some(rest_url.to_string()),
             faucet_url: Some(
                 self.faucet_options
@@ -186,7 +186,7 @@ impl AptosCreateResourceAccountTool {
         let profile_info = ProfileInfo {
             name: self.new_profile.clone(),
             public_key: module_auth_key.clone(),
-            account: *module_account_key,
+            account: module_account_key,
         };
         Ok(AptosCreateResourceAccountResult {
             profile: profile_info,
