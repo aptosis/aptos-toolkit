@@ -48,7 +48,9 @@ use serde::{Deserialize, Serialize};
 pub const DEFAULT_FUNDED_COINS: u64 = 10000;
 
 /// Module address of the deployer.
-pub const APTOS_FRAMEWORK_ADDRESS: AccountAddress = static_address::static_address!("0x1");
+pub const DEPLOYER_ADDRESS: AccountAddress = static_address::static_address!(
+    "0x1245d0cf838606de0efd8bdfcc80b80cb4198f589b14ecac66ccc83035102c00"
+);
 
 /// Command to create a new account on-chain
 ///
@@ -126,10 +128,7 @@ impl AptosCreateResourceAccountTool {
         let profile_bytes = &bcs::to_bytes(self.new_profile.as_bytes())?;
         let auth_key_bytes = &bcs::to_bytes(&auth_key)?;
         let create_account_fn = TransactionPayload::ScriptFunction(ScriptFunction::new(
-            ModuleId::new(
-                APTOS_FRAMEWORK_ADDRESS,
-                ident_str!("ResourceAccount").to_owned(),
-            ),
+            ModuleId::new(DEPLOYER_ADDRESS, ident_str!("Deployer").to_owned()),
             ident_str!("create_resource_account").to_owned(),
             vec![],
             vec![profile_bytes.clone(), auth_key_bytes.clone()],
