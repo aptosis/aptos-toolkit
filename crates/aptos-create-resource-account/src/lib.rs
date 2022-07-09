@@ -47,9 +47,7 @@ use serde::{Deserialize, Serialize};
 pub const DEFAULT_FUNDED_COINS: u64 = 10000;
 
 /// Module address of the deployer.
-pub const DEPLOYER_MODULE_ADDRESS: AccountAddress = static_address::static_address!(
-    "0xcf43589ea2a37ecab7c39657db15939e23e93972bc0481b51c4797c1f2d78a75"
-);
+pub const APTOS_FRAMEWORK_ADDRESS: AccountAddress = static_address::static_address!("0x1");
 
 /// Command to create a new account on-chain
 ///
@@ -66,7 +64,7 @@ pub struct AptosCreateResourceAccountTool {
     /// Initial coins to fund when using the faucet
     #[clap(long, default_value_t = DEFAULT_FUNDED_COINS)]
     pub initial_coins: u64,
-    /// Name of the profile to create.
+    /// Name of the profile to create. This is also the seed.
     pub new_profile: String,
 }
 
@@ -114,10 +112,16 @@ impl AptosCreateResourceAccountTool {
     ) -> aptos_cli_config::CliTypedResult<Transaction> {
         let auth_key = AuthenticationKey::ed25519(public_key);
         let create_account_fn = TransactionPayload::ScriptFunction(ScriptFunction::new(
-            ModuleId::new(DEPLOYER_MODULE_ADDRESS, ident_str!("Deployer").to_owned()),
-            ident_str!("create_resource_account_with_auth_key").to_owned(),
+            ModuleId::new(
+                APTOS_FRAMEWORK_ADDRESS,
+                ident_str!("ResourceAccount").to_owned(),
+            ),
+            ident_str!("create_resource_account").to_owned(),
             vec![],
-            vec![bcs::to_bytes(&auth_key)?],
+            vec![
+                bcs::to_bytes(self.new_profile.as_bytes())?,
+                bcs::to_bytes(&auth_key)?,
+            ],
         ));
         self.transaction_options
             .submit_transaction(create_account_fn)

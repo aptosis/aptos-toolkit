@@ -95,9 +95,9 @@ checksum = "bb07d2053ccdbe10e2af2995a2f116c1330396493dc1269f6a91d0ae82e19704"
 
 [[package]]
 name = "aptos-api-types"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d8c55d5d1d49a70902913e389c0dab6deafc9923c1244fb34d5d8ca6b2e7bb90"
+checksum = "ed43bf93da0f006c5f065c5c78ccf5c6f788b40390ab6e594b101377e3b587fb"
 dependencies = [
  "anyhow",
  "aptos-crypto",
@@ -173,9 +173,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-crypto"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6074c78cd776938330f07f8ce24b07c0230683bb981f14cc591978d758a3e387"
+checksum = "5629a7b55c05948d2eeccc49cfd54338890eebbb023484fa8e0cd666c72b8858"
 dependencies = [
  "anyhow",
  "aptos-crypto-derive",
@@ -204,9 +204,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-crypto-derive"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b3d77027844e2dd10af7f283fc109ffa58a64904924d1d5bfdc20470b4a2b121"
+checksum = "6c4e155052e1fe4df6f81e9af1848ee2e07bad8225291937a8e2401391a3a683"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -215,9 +215,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-framework"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ce8ba55b527b69b5d2144989dcacf625690b6e549121fffd34ed8f2aaec16a60"
+checksum = "298f90a4362a9542c6f10c4618f86dd32654dd3e5da2a6cdd620d30620ec0714"
 dependencies = [
  "anyhow",
  "aptos-crypto",
@@ -239,15 +239,15 @@ dependencies = [
 
 [[package]]
 name = "aptos-infallible"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "89652feb073a653586f568c82fe927256dd2a0f5da2abe7283bb8a657de770b0"
+checksum = "db92eb5553188a1f149172c97feeb3517961976f9f52fea59ff973a1f3040b59"
 
 [[package]]
 name = "aptos-keygen"
-version = "0.1.4"
+version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "14ee630ad13501ba28af57f4b509460e337b3ac967ea5635b18177eb5eee60f1"
+checksum = "68595da7ee2cfa6c7236f1cbb7388e3b779c1a7a1c9cbb4dd5df6dc1e87d800a"
 dependencies = [
  "aptos-crypto",
  "aptos-types",
@@ -257,9 +257,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-log-derive"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1c8a13bd2684cc5ef2a2aedf205b3cd8c3b524c338a31cc78ba94f8c3dd60649"
+checksum = "c8c6cb22fad8328b31803967fbc4705ef1d94d843b37fbfb1cdbcdd2c2235df4"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -268,9 +268,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-logger"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "19b4052826eb8256163b15e999a9e75cabdeb6bab34d8d6b53ca8f9ce042d3cf"
+checksum = "45f55bb68ab208e3d236b6489a6945be09a477689577e0615d79e1c2d913a7d0"
 dependencies = [
  "aptos-infallible",
  "aptos-log-derive",
@@ -288,9 +288,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-metrics-core"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3bc6e75baab7fe1d23802e17b0df88408a0b319d8e902346cd7679bb7ca26d35"
+checksum = "85c9f32d3556891bda2ae0b430e263fddae8891c63a3f061347a02154b540dab"
 dependencies = [
  "prometheus",
 ]
@@ -316,9 +316,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-parallel-executor"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a3d67f9c459ba58bdda6fdd3d846026a80428195713e186c6d533c442bbbbb0e"
+checksum = "4d75ff67cdf24eac63e42a7b880bc21203bd4e167200d1c7eb7e791bf1cae787"
 dependencies = [
  "aptos-infallible",
  "arc-swap",
@@ -376,9 +376,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-sdk"
-version = "0.1.4"
+version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fc3325292cfd13246c5a39e4adc62ae767ce9ebd33204b52187abd9161871a3a"
+checksum = "40948b687d76d706be43d6b0a756dba3a1108477f0d65c2f20efbddee126ef8f"
 dependencies = [
  "aptos-crypto",
  "aptos-transaction-builder",
@@ -391,9 +391,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-state-view"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bfd88b4a6472abad9559b2793206c7082b73ce5f69c1c815f5ea2607906fe165"
+checksum = "cf8b69ff24782f6699c7aa34c221e90d811187cfcdf6247f758673ee45dceaa7"
 dependencies = [
  "anyhow",
  "aptos-crypto",
@@ -406,9 +406,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-transaction-builder"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2e0894f4deca1e8c8aeb670d2d0e4de6a8f569e7f3eeb9ef4a792baf769c760e"
+checksum = "31b2f159d59e6f9f31c426f704de7c327b90772b710a4942481ed052017ed83b"
 dependencies = [
  "aptos-types",
  "bcs",
@@ -419,9 +419,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-types"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "91caab079b17598c99808955a2e2bd2f924602831c4fd58b2316104b1d57ef59"
+checksum = "1ca7d2db110e2af5cc81f8a8239007b603f3337c1d50d1506e9b34544f179141"
 dependencies = [
  "aes-gcm",
  "anyhow",
@@ -440,6 +440,7 @@ dependencies = [
  "serde 1.0.138",
  "serde_bytes",
  "serde_json",
+ "serde_yaml",
  "thiserror",
  "tiny-keccak",
 ]
@@ -514,9 +515,9 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 
 [[package]]
 name = "backtrace"
-version = "0.3.65"
+version = "0.3.66"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "11a17d453482a265fd5f8479f2a3f405566e6ca627837aaddb85af8b1ab8ef61"
+checksum = "cab84319d616cfb654d03394f38ab7e6f0919e181b1b57e1fd15e7fb4077d9a7"
 dependencies = [
  "addr2line",
  "cc",
@@ -705,9 +706,9 @@ checksum = "c4872d67bab6358e59559027aa3b9157c53d9358c51423c17554809a8858e0f8"
 
 [[package]]
 name = "cached-framework-packages"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f0390d58b4e4a6d2a9b5f6cd41b03b0e0468a4954c12d92fc776119be561d51b"
+checksum = "aabb81740c433bac9384105030c0ce182211e505979f49b37a481fe0b12f98b0"
 dependencies = [
  "aptos-framework",
  "aptos-types",
@@ -841,9 +842,9 @@ dependencies = [
 
 [[package]]
 name = "clitool"
-version = "0.1.4"
+version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c73e4f39fb35bf8d9ab7b9520a0434d84030e0b82c3c4e223d743f71e5ae0d7"
+checksum = "a8f6895ce4c9eb496311218f3cc67332218b956a21a2a033f7d1ac571cb2051d"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1149,7 +1150,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3495912c9c1ccf2e18976439f4443f3fee0fd61f424ff99fde6a66b15ecb448f"
 dependencies = [
  "cfg-if 1.0.0",
- "hashbrown 0.12.1",
+ "hashbrown 0.12.2",
  "lock_api 0.4.7",
  "parking_lot_core 0.9.3",
 ]
@@ -1594,9 +1595,9 @@ checksum = "ab5ef0d4909ef3724cc8cce6ccc8572c5c817592e9285f5464f8e86f8bd3726e"
 
 [[package]]
 name = "hashbrown"
-version = "0.12.1"
+version = "0.12.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "db0d4cf898abf0081f964436dc980e96670a0f36863e4b83aaacdb65c9d7ccc3"
+checksum = "607c8a29735385251a339424dd462993c0fed8fa09d378f259377df08c126022"
 dependencies = [
  "ahash",
 ]
@@ -1729,9 +1730,9 @@ checksum = "02296996cb8796d7c6e3bc2d9211b7802812d36999a51bb754123ead7d37d026"
 
 [[package]]
 name = "hyper"
-version = "0.14.19"
+version = "0.14.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42dc3c131584288d375f2d07f822b0cb012d8c6fb899a5b9fdb3cb7eb9b6004f"
+checksum = "02c929dc5c39e335a03c405292728118860721b10190d98c2a0f0efd5baafbac"
 dependencies = [
  "bytes",
  "futures-channel",
@@ -1858,7 +1859,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "10a35a97730320ffe8e2d410b5d3b69279b98d2c14bdb8b70ea89ecf7888d41e"
 dependencies = [
  "autocfg",
- "hashbrown 0.12.1",
+ "hashbrown 0.12.2",
 ]
 
 [[package]]
@@ -1878,7 +1879,7 @@ checksum = "6ab388864246d58a276e60e7569a833d9cc4cd75c66e5ca77c177dad38e59996"
 dependencies = [
  "ahash",
  "dashmap",
- "hashbrown 0.12.1",
+ "hashbrown 0.12.2",
  "once_cell",
  "parking_lot 0.12.1",
 ]
@@ -2148,9 +2149,9 @@ dependencies = [
 
 [[package]]
 name = "move-deps"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b5c29b6336c74402b57424e7f4d77109fdf2b4c01c6cbbf7bab580097e2bca22"
+checksum = "f552027e93bad92622ad1c3ecc8b955f41752f32e8ae9324c860376351ac5166"
 dependencies = [
  "move-bytecode-utils",
  "move-bytecode-verifier",
@@ -2816,9 +2817,9 @@ dependencies = [
 
 [[package]]
 name = "mvhashmap"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fcea6d3dcc5b4033732be38dee23efb947b3d5b2756104be95e92fd55da16cdb"
+checksum = "233390e98cbc99873d838bf5c2304ec27f889aa7ce21fad49b96c26adf5cd3b4"
 dependencies = [
  "crossbeam",
  "dashmap",
@@ -2993,9 +2994,9 @@ dependencies = [
 
 [[package]]
 name = "object"
-version = "0.28.4"
+version = "0.29.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e42c982f2d955fac81dd7e1d0e1426a7d702acd9c98d19ab01083a6a0328c424"
+checksum = "21158b2c33aa6d4561f1c0a6ea283ca92bc54802a93b263e910746d679a7eb53"
 dependencies = [
  "memchr",
 ]
@@ -3935,9 +3936,9 @@ dependencies = [
 
 [[package]]
 name = "serde_yaml"
-version = "0.8.24"
+version = "0.8.25"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "707d15895415db6628332b737c838b88c598522e4dc70647e59b72312924aebc"
+checksum = "1ec0091e1f5aa338283ce049bd9dfefd55e1f168ac233e85c1ffe0038fb48cbe"
 dependencies = [
  "indexmap",
  "ryu",
@@ -4564,9 +4565,9 @@ dependencies = [
 
 [[package]]
 name = "transaction-builder-generator"
-version = "0.1.4"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "62f9b8ed8dcf295495240276cf7937928275afb05edca81a412732f76d1ab6d8"
+checksum = "e5a9b0acc330d3eced4a7dd12708a4247cca40c095e86db2fc07b29e860c48fb"
 dependencies = [
  "anyhow",
  "aptos-types",
