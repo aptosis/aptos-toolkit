@@ -173,9 +173,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-crypto"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5629a7b55c05948d2eeccc49cfd54338890eebbb023484fa8e0cd666c72b8858"
+checksum = "42679507208bd9a40b586d8310217303a4865a25860e9c318f977b20257bfdcc"
 dependencies = [
  "anyhow",
  "aptos-crypto-derive",
@@ -204,9 +204,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-crypto-derive"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6c4e155052e1fe4df6f81e9af1848ee2e07bad8225291937a8e2401391a3a683"
+checksum = "1b76534c5e8f87e072095072f5896c0b1767c5941f882330fb3638e01efe94a7"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -419,9 +419,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-types"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ca7d2db110e2af5cc81f8a8239007b603f3337c1d50d1506e9b34544f179141"
+checksum = "3d9ce178c513d8c1ae1969b47c3f39b82de8bbb82c15c45f833b54b179860803"
 dependencies = [
  "aes-gcm",
  "anyhow",
@@ -2149,9 +2149,9 @@ dependencies = [
 
 [[package]]
 name = "move-deps"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f552027e93bad92622ad1c3ecc8b955f41752f32e8ae9324c860376351ac5166"
+checksum = "63c2cadd7bc4c0afdfe91cda002f7968e6847102aecedb22ae3ec66d56ce7e83"
 dependencies = [
  "move-bytecode-utils",
  "move-bytecode-verifier",
