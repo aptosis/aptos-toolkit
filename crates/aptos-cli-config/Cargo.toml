@@ -11,7 +11,7 @@ keywords = ["move", "aptos", "config", "cli"]
 
 [dependencies]
 anyhow = "1.0.42"
-aptos-crypto = "0.1.0"
+aptos-crypto = "0.1.7"
 aptos-types = "0.1.0"
 base64 = "0.13.0"
 bcs = "0.1.3"

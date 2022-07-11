@@ -12,7 +12,7 @@ keywords = ["move", "aptos", "config", "cli"]
 [dependencies]
 anyhow = "1.0.42"
 aptos-cli-config = { version = "0.1.0", path = "../aptos-cli-config" }
-aptos-crypto = { version = "0.1.0" }
+aptos-crypto = { version = "0.1.7" }
 aptos-rest-client = "0.1.0"
 aptos-sdk = "0.1.0"
 aptos-types = "0.1.0"
