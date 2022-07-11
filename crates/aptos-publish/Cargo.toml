@@ -14,7 +14,7 @@ anyhow = "1.0.42"
 aptos-cli-common = { version = "0.1.0", path = "../aptos-cli-common" }
 aptos-cli-config = { version = "0.1.0", path = "../aptos-cli-config" }
 aptos-crypto = { version = "0.1.0" }
-aptos-sdk = "0.1.0"
+aptos-sdk = "0.1.7"
 aptos-rest-client = "0.1.0"
 aptos-types = "0.1.0"
 async-trait = "0.1.56"

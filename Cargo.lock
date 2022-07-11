@@ -173,9 +173,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-crypto"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5629a7b55c05948d2eeccc49cfd54338890eebbb023484fa8e0cd666c72b8858"
+checksum = "42679507208bd9a40b586d8310217303a4865a25860e9c318f977b20257bfdcc"
 dependencies = [
  "anyhow",
  "aptos-crypto-derive",
@@ -204,9 +204,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-crypto-derive"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6c4e155052e1fe4df6f81e9af1848ee2e07bad8225291937a8e2401391a3a683"
+checksum = "1b76534c5e8f87e072095072f5896c0b1767c5941f882330fb3638e01efe94a7"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -376,9 +376,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-sdk"
-version = "0.1.5"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "40948b687d76d706be43d6b0a756dba3a1108477f0d65c2f20efbddee126ef8f"
+checksum = "50d3517b866c3fd672ce9dacf2b1dec2ce1d56b4434706b30ccfc8f3fb0e5ffb"
 dependencies = [
  "aptos-crypto",
  "aptos-transaction-builder",
@@ -406,9 +406,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-transaction-builder"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "31b2f159d59e6f9f31c426f704de7c327b90772b710a4942481ed052017ed83b"
+checksum = "9d9f362045760964c2c8640cfa27d6ce398d1628c21f65cd765a0a69be10ee8a"
 dependencies = [
  "aptos-types",
  "bcs",
@@ -419,9 +419,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-types"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ca7d2db110e2af5cc81f8a8239007b603f3337c1d50d1506e9b34544f179141"
+checksum = "3d9ce178c513d8c1ae1969b47c3f39b82de8bbb82c15c45f833b54b179860803"
 dependencies = [
  "aes-gcm",
  "anyhow",
@@ -706,9 +706,9 @@ checksum = "c4872d67bab6358e59559027aa3b9157c53d9358c51423c17554809a8858e0f8"
 
 [[package]]
 name = "cached-framework-packages"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aabb81740c433bac9384105030c0ce182211e505979f49b37a481fe0b12f98b0"
+checksum = "65035de9349a4a8557e246d8afb7adc1823b2845063d9a5898df30a64bda3cf8"
 dependencies = [
  "aptos-framework",
  "aptos-types",
@@ -2149,9 +2149,9 @@ dependencies = [
 
 [[package]]
 name = "move-deps"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f552027e93bad92622ad1c3ecc8b955f41752f32e8ae9324c860376351ac5166"
+checksum = "63c2cadd7bc4c0afdfe91cda002f7968e6847102aecedb22ae3ec66d56ce7e83"
 dependencies = [
  "move-bytecode-utils",
  "move-bytecode-verifier",
