@@ -2,8 +2,8 @@
 //!
 //! This package exists as a lightweight alternative to the `aptos` crate, reducing
 //! the number of dependencies needed to interface with the Aptos CLI configuration.
+use account_address::*;
 use aptos_crypto::ed25519::{Ed25519PrivateKey, Ed25519PublicKey};
-use aptos_types::account_address::AccountAddress;
 use serde::{Deserialize, Serialize};
 use std::{
     collections::HashMap,

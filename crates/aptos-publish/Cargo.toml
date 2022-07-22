@@ -11,22 +11,17 @@ keywords = ["move", "aptos", "account", "cli"]
 
 [dependencies]
 anyhow = "1.0.42"
-aptos-cli-common = { version = "0.1.0", path = "../aptos-cli-common" }
-aptos-cli-config = { version = "0.1.0", path = "../aptos-cli-config" }
-aptos-crypto = { version = "0.1.0" }
-aptos-sdk = "0.1.0"
-aptos-rest-client = "0.1.0"
-aptos-types = "0.1.0"
+aptos-types = "0.2.1"
 async-trait = "0.1.56"
-bcs = "0.1.3"
 clap = { version = "3.2", features = ["derive"] }
 clitool = "0.1.0"
-move-deps = { version = "0.1.0", features = ["address32"] }
-mv-core-types = { version = "=0.1.5", features = ["address32"] }
+move-command-line-common = "0.2.1"
+move-package = { version = "0.2.1", package = "mv-package" }
 serde = { version = "1.0", features = ["derive"] }
-static-address = { version = "0.1.0", features = ["address32"] }
 tokio = { version = "1.18.2", features = ["full"] }
-url = "2"
+# workspace
+aptos-cli-common = { version = "0.1.0", path = "../aptos-cli-common" }
+aptos-cli-config = { version = "0.1.0", path = "../aptos-cli-config" }
 
 [[bin]]
 name = "aptos-publish"

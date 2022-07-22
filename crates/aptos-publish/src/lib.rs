@@ -30,10 +30,8 @@ use aptos_types::transaction::{ModuleBundle, TransactionPayload};
 use async_trait::async_trait;
 use clap::Parser;
 use clitool::CliTool;
-use move_deps::{
-    move_command_line_common::env::get_bytecode_version_from_env,
-    move_package::{compilation::compiled_package::CompiledPackage, BuildConfig},
-};
+use move_command_line_common::env::get_bytecode_version_from_env;
+use move_package::{compilation::compiled_package::CompiledPackage, BuildConfig};
 
 /// Command to publish a Move module to Aptos
 #[derive(Debug, Parser)]

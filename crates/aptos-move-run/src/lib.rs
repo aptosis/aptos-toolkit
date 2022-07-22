@@ -22,9 +22,9 @@
 //! aptos-move-run
 //! ```
 use anyhow::Result;
+use aptos_api_types::MoveType;
 use aptos_cli_common::{load_account_arg, TransactionOptions, TransactionSummary};
 use aptos_cli_config::{CliError, CliTypedResult};
-use aptos_rest_client::aptos_api_types::MoveType;
 use aptos_types::{
     account_address::AccountAddress,
     transaction::{ScriptFunction, TransactionPayload},

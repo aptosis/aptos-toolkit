@@ -128,7 +128,7 @@ impl AptosCreateResourceAccountTool {
         let profile_bytes = &bcs::to_bytes(self.new_profile.as_bytes())?;
         let auth_key_bytes = &bcs::to_bytes(&auth_key)?;
         let create_account_fn = TransactionPayload::ScriptFunction(ScriptFunction::new(
-            ModuleId::new(DEPLOYER_ADDRESS, ident_str!("Deployer").to_owned()),
+            ModuleId::new(DEPLOYER_ADDRESS, ident_str!("deployer").to_owned()),
             ident_str!("create_resource_account").to_owned(),
             vec![],
             vec![profile_bytes.clone(), auth_key_bytes.clone()],
@@ -138,6 +138,7 @@ impl AptosCreateResourceAccountTool {
             &self.transaction_options.profile_options.account_address()?,
             self.new_profile.as_bytes(),
         )?;
+        println!("Creating account at: {}", address);
 
         let tx = self
             .transaction_options

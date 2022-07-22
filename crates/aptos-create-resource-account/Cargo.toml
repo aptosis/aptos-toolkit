@@ -11,20 +11,24 @@ keywords = ["move", "aptos", "account", "cli"]
 
 [dependencies]
 anyhow = "1.0.42"
-aptos-cli-common = { version = "0.1.0", path = "../aptos-cli-common" }
-aptos-cli-config = { version = "0.1.0", path = "../aptos-cli-config" }
-aptos-crypto = { version = "0.1.0" }
-aptos-keygen = "0.1.0"
-aptos-rest-client = "0.1.0"
-aptos-types = "0.1.0"
+account-address = { version = "0.2.0", features = ["address32"] }
+aptos-crypto = { version = "0.2.1" }
+aptos-keygen = "0.2.1"
+aptos-rest-client = "0.2.1"
+aptos-types = "0.2.1"
 async-trait = "0.1.56"
 bcs = "0.1.3"
 clap = { version = "3.2", features = ["derive"] }
 clitool = "0.1.0"
-mv-core-types = { version = "=0.1.5", features = ["address32"] }
+move-core-types = { version = "0.2.1", features = [
+    "address32"
+], package = "mv-core-types" }
 serde = { version = "1.0", features = ["derive"] }
-static-address = { version = "0.1.0", features = ["address32"] }
+static-address = { version = "0.2", features = ["address32"] }
 tokio = { version = "1.18.2", features = ["full"] }
+# workspace
+aptos-cli-common = { version = "0.1.0", path = "../aptos-cli-common" }
+aptos-cli-config = { version = "0.1.0", path = "../aptos-cli-config" }
 
 [[bin]]
 name = "aptos-create-resource-account"
