@@ -36,11 +36,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1657152315,
-        "narHash": "sha256-uveo/rgW3KnSILtPpQtU6n10kTtB6M3YlS7NyFuK9is=",
+        "lastModified": 1658444905,
+        "narHash": "sha256-u9MGsXHdhiyHaak9sgwsuZ1cKA7iG2MWvn1A155V6fI=",
         "owner": "movingco",
         "repo": "move.nix",
-        "rev": "80b971daf4e24c76df852e34f1a432dc85c2b476",
+        "rev": "ddbfed9171da60d2fb3d0a4b92834e7b3fbca9b9",
         "type": "github"
       },
       "original": {
@@ -68,11 +68,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1657177452,
-        "narHash": "sha256-CojBqno3Zbw9/788+kCjRXXornpc4jJGC6RYvTYdVkg=",
+        "lastModified": 1658549974,
+        "narHash": "sha256-+D1gH6ecI14xDuObG07cd9XXhLDdLMRwOBDQmJcVluc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5cbfadba693e0453f3a4090e83fbf845e18d184b",
+        "rev": "52dd719bbd13d9f0974e5c3c29c74aa249e5b091",
         "type": "github"
       },
       "original": {
