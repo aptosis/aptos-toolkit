@@ -391,9 +391,9 @@ dependencies = [
 
 [[package]]
 name = "aptos-rest-client"
-version = "0.2.1"
+version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5f2608ed122bb09382a81839afa7db3134b2a827fdb33e01ec8acb79cf05691c"
+checksum = "57c0eae10c60823ff6c63dee866bea4a34e80a4ff41686f44d8aae22c44b4faf"
 dependencies = [
  "anyhow",
  "aptos-api-types",
