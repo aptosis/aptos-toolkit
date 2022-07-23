@@ -51,34 +51,41 @@ fn compile_move(build_config: BuildConfig, package_dir: &Path) -> CliTypedResult
         .map_err(|err| CliError::MoveCompilationError(err.to_string()))
 }
 
+pub async fn publish(
+    package: &CompiledPackage,
+    txn_options: &TransactionOptions,
+) -> Result<TransactionSummary> {
+    let compiled_units: Vec<Vec<u8>> = package
+        .root_compiled_units
+        .iter()
+        .map(|unit_with_source| {
+            unit_with_source
+                .unit
+                .serialize(get_bytecode_version_from_env())
+        })
+        .collect();
+
+    // Send the compiled module
+    txn_options
+        .submit_transaction(TransactionPayload::ModuleBundle(ModuleBundle::new(
+            compiled_units,
+        )))
+        .await
+        .map(TransactionSummary::from)
+        .map_err(|err| anyhow::anyhow!("failed to submit transaction: {}", err.to_string()))
+}
+
 #[async_trait]
 impl CliTool<TransactionSummary> for AptosPublishTool {
     async fn execute(self) -> Result<TransactionSummary> {
         let build_config = BuildConfig {
             additional_named_addresses: self.move_options.named_addresses(),
-            generate_abis: false,
+            generate_abis: true,
             generate_docs: true,
             install_dir: self.move_options.output_dir.clone(),
             ..Default::default()
         };
         let package = compile_move(build_config, self.move_options.package_dir.as_path())?;
-        let compiled_units: Vec<Vec<u8>> = package
-            .root_compiled_units
-            .iter()
-            .map(|unit_with_source| {
-                unit_with_source
-                    .unit
-                    .serialize(get_bytecode_version_from_env())
-            })
-            .collect();
-
-        // Send the compiled module
-        self.txn_options
-            .submit_transaction(TransactionPayload::ModuleBundle(ModuleBundle::new(
-                compiled_units,
-            )))
-            .await
-            .map(TransactionSummary::from)
-            .map_err(|err| anyhow::anyhow!("failed to submit transaction: {}", err.to_string()))
+        publish(&package, &self.txn_options).await
     }
 }

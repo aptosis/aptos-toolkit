@@ -1,0 +1,26 @@
+[package]
+name = "aptos-upload"
+version = "0.1.1"
+description = "CLI for publishing already-compiled Move modules to Aptos."
+homepage = "https://aptos.is"
+repository = "https://github.com/aptosis/aptos-toolkit"
+authors = ["Ian Macalinao <ian@aptos.is>"]
+license = "Apache-2.0"
+edition = "2021"
+keywords = ["move", "aptos", "account", "cli"]
+
+[dependencies]
+anyhow = "1.0.42"
+async-trait = "0.1.56"
+clap = { version = "3.2", features = ["derive"] }
+clitool = "0.1.0"
+move-package = { version = "0.2.1", package = "mv-package" }
+serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1.18.2", features = ["full"] }
+# workspace
+aptos-publish = { version = "0.1.0", path = "../aptos-publish" }
+aptos-cli-common = { version = "0.1.0", path = "../aptos-cli-common" }
+
+[[bin]]
+name = "aptos-upload"
+path = "src/bin/aptos-upload.rs"
