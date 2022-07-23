@@ -93,7 +93,7 @@ dependencies = [
 
 [[package]]
 name = "aptos-cli-common"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "aptos-cli-config",
@@ -115,7 +115,7 @@ dependencies = [
 
 [[package]]
 name = "aptos-cli-config"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "account-address",
  "anyhow",
@@ -154,7 +154,7 @@ dependencies = [
 
 [[package]]
 name = "aptos-create-resource-account"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "account-address",
  "anyhow",
@@ -330,7 +330,7 @@ dependencies = [
 
 [[package]]
 name = "aptos-move-run"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "aptos-api-types",
@@ -374,7 +374,7 @@ dependencies = [
 
 [[package]]
 name = "aptos-publish"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "aptos-cli-common",
@@ -526,7 +526,7 @@ dependencies = [
 
 [[package]]
 name = "aptos-upload"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "aptos-cli-common",

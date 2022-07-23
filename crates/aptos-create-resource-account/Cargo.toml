@@ -1,6 +1,6 @@
 [package]
 name = "aptos-create-resource-account"
-version = "0.1.1"
+version = "0.1.2"
 description = "CLI for creating Aptos resource accounts."
 homepage = "https://aptos.is"
 repository = "https://github.com/aptosis/aptos-toolkit"
