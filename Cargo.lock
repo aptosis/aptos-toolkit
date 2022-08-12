@@ -103,7 +103,7 @@ dependencies = [
  "aptos-types",
  "base64",
  "bcs",
- "clap 3.2.14",
+ "clap 3.2.17",
  "hex",
  "itertools",
  "reqwest",
@@ -166,7 +166,7 @@ dependencies = [
  "aptos-types",
  "async-trait",
  "bcs",
- "clap 3.2.14",
+ "clap 3.2.17",
  "clitool",
  "mv-core-types",
  "serde 1.0.140",
@@ -226,7 +226,7 @@ dependencies = [
  "aptos-crypto",
  "aptos-types",
  "bcs",
- "clap 3.2.14",
+ "clap 3.2.17",
  "curve25519-dalek",
  "include_dir 0.7.2",
  "libsecp256k1",
@@ -339,7 +339,7 @@ dependencies = [
  "aptos-types",
  "async-trait",
  "bcs",
- "clap 3.2.14",
+ "clap 3.2.17",
  "clitool",
  "hex",
  "mv-core-types",
@@ -381,7 +381,7 @@ dependencies = [
  "aptos-cli-config",
  "aptos-types",
  "async-trait",
- "clap 3.2.14",
+ "clap 3.2.17",
  "clitool",
  "move-command-line-common",
  "mv-package",
@@ -532,7 +532,7 @@ dependencies = [
  "aptos-cli-common",
  "aptos-publish",
  "async-trait",
- "clap 3.2.14",
+ "clap 3.2.17",
  "clitool",
  "mv-package",
  "serde 1.0.140",
@@ -926,9 +926,9 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "3.2.14"
+version = "3.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "54635806b078b7925d6e36810b1755f2a4b5b4d57560432c1ecf60bcbe10602b"
+checksum = "29e724a68d9319343bb3328c9cc2dfde263f4b3142ee1059a9980580171c954b"
 dependencies = [
  "atty",
  "bitflags",
@@ -943,9 +943,9 @@ dependencies = [
 
 [[package]]
 name = "clap_derive"
-version = "3.2.7"
+version = "3.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "759bf187376e1afa7b85b959e6a664a3e7a95203415dba952ad19139e798f902"
+checksum = "13547f7012c01ab4a0e8f8967730ada8f9fdf419e8b6c792788f39cf4e46eefa"
 dependencies = [
  "heck 0.4.0",
  "proc-macro-error",
@@ -971,7 +971,7 @@ checksum = "a8f6895ce4c9eb496311218f3cc67332218b956a21a2a033f7d1ac571cb2051d"
 dependencies = [
  "anyhow",
  "async-trait",
- "clap 3.2.14",
+ "clap 3.2.17",
  "serde 1.0.140",
  "serde_json",
 ]
@@ -2363,7 +2363,7 @@ checksum = "cc5e68a282be2e78fa28d6ed0ad12ac4ae8d0421e76b9e613ad4f088a5de2634"
 dependencies = [
  "anyhow",
  "bcs",
- "clap 3.2.14",
+ "clap 3.2.17",
  "codespan",
  "colored",
  "move-command-line-common",
@@ -2479,7 +2479,7 @@ checksum = "f9c9e5eee1c8dad99fd7d27611dd8d0ec595c197e94142eec49d72d2991e5fec"
 dependencies = [
  "anyhow",
  "bytecode-interpreter-crypto",
- "clap 3.2.14",
+ "clap 3.2.17",
  "codespan-reporting",
  "itertools",
  "move-stackless-bytecode",
@@ -2606,7 +2606,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7318d4c66562480b337f8ecde68a514168b01c794085effd726462f5a41f18ea"
 dependencies = [
  "anyhow",
- "clap 3.2.14",
+ "clap 3.2.17",
  "crossterm 0.21.0",
  "move-command-line-common",
  "mv-binary-format",
@@ -2625,7 +2625,7 @@ checksum = "0eeed49529edf27d69502f2b703796bdcab2b37475a710fca2b590f582389409"
 dependencies = [
  "anyhow",
  "bcs",
- "clap 3.2.14",
+ "clap 3.2.17",
  "codespan-reporting",
  "colored",
  "difference",
@@ -2667,7 +2667,7 @@ checksum = "ca52dfc13269bc0f74cd7eeef0f29e3f1574a08a2443273ced1f2a364333c18d"
 dependencies = [
  "anyhow",
  "bcs",
- "clap 3.2.14",
+ "clap 3.2.17",
  "codespan-reporting",
  "difference",
  "hex",
@@ -2712,7 +2712,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "72b65589423e22b16925eeaf32556155937e2ccf7858e646c854490f315b8068"
 dependencies = [
  "anyhow",
- "clap 3.2.14",
+ "clap 3.2.17",
  "colored",
  "move-bytecode-verifier",
  "move-command-line-common",
@@ -2766,7 +2766,7 @@ checksum = "e110533aab1850db2d5a68cd543c58cdffd6f2f49b72146a70de4a75b7e42852"
 dependencies = [
  "anyhow",
  "bcs",
- "clap 3.2.14",
+ "clap 3.2.17",
  "move-bytecode-verifier",
  "move-command-line-common",
  "move-ir-to-bytecode",
@@ -2828,7 +2828,7 @@ checksum = "f607375978417558316ca71b5d7bdc819d8062e7e849281cd8a1e18186ff33e1"
 dependencies = [
  "anyhow",
  "bcs",
- "clap 3.2.14",
+ "clap 3.2.17",
  "colored",
  "dirs-next",
  "move-bytecode-utils",
@@ -2863,7 +2863,7 @@ dependencies = [
  "anyhow",
  "async-trait",
  "atty",
- "clap 3.2.14",
+ "clap 3.2.17",
  "codespan",
  "codespan-reporting",
  "futures",
@@ -2980,7 +2980,7 @@ checksum = "1b63d93ba5cfc9a11c739290f60e73e857cb21c66340318719f7d72ab7075a64"
 dependencies = [
  "anyhow",
  "better_any",
- "clap 3.2.14",
+ "clap 3.2.17",
  "codespan-reporting",
  "colored",
  "itertools",
