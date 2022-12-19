@@ -11,7 +11,7 @@ keywords = ["move", "aptos", "account", "cli"]
 
 [dependencies]
 anyhow = "1.0.42"
-async-trait = "0.1.56"
+async-trait = "0.1.60"
 clap = { version = "3.2", features = ["derive"] }
 clitool = "0.1.0"
 move-package = { version = "0.2.1", package = "mv-package" }
