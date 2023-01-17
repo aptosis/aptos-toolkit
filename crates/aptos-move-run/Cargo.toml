@@ -24,7 +24,7 @@ move-core-types = { version = "0.2.1", features = [
     "address32"
 ], package = "mv-core-types" }
 serde = { version = "1.0", features = ["derive"] }
-tokio = { version = "1.18.2", features = ["full"] }
+tokio = { version = "1.24.2", features = ["full"] }
 
 [[bin]]
 name = "aptos-move-run"

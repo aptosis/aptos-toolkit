@@ -18,7 +18,7 @@ clitool = "0.1.0"
 move-command-line-common = "0.2.1"
 move-package = { version = "0.2.1", package = "mv-package" }
 serde = { version = "1.0", features = ["derive"] }
-tokio = { version = "1.18.2", features = ["full"] }
+tokio = { version = "1.24.2", features = ["full"] }
 # workspace
 aptos-cli-common = { version = "0.1.0", path = "../aptos-cli-common" }
 aptos-cli-config = { version = "0.1.0", path = "../aptos-cli-config" }
