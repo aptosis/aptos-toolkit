@@ -13,7 +13,7 @@ keywords = ["move", "aptos", "account", "cli"]
 anyhow = "1.0.42"
 async-trait = "0.1.56"
 clap = { version = "3.2", features = ["derive"] }
-clitool = "0.1.0"
+clitool = "0.2.3"
 move-package = { version = "0.2.1", package = "mv-package" }
 serde = { version = "1.0", features = ["derive"] }
 tokio = { version = "1.18.2", features = ["full"] }
